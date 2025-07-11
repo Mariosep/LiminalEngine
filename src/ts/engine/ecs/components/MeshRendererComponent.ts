@@ -1,18 +1,24 @@
-import * as THREE from "three";
 import { Component } from "../Component";
-import { GeometryFactory, GeometryType } from "../../data/factory/MeshFactory";
-import { MaterialFactory, MaterialType } from "../../data/factory/MaterialFactory";
+import { GeometryType } from "../../data/factory/MeshFactory";
+import { MaterialType } from "../../data/factory/MaterialFactory";
+import { MeshRendererComponentAdapter } from "./adapters/MeshRendererComponentAdapter";
 
 export class MeshRendererComponent extends Component {
-  // Properties
-  private _mesh: THREE.Mesh;
+    // Properties
+    private _meshType: GeometryType;
+    private _materialType: MaterialType;
 
-  public get geometry(): THREE.BufferGeometry { return this._mesh.geometry; }
-  public get material(): THREE.Material { return this._mesh.material as THREE.Material; }
+    private _meshRendererComponentAdapter: MeshRendererComponentAdapter;
 
-  constructor(meshType: GeometryType, materialType: MaterialType) {
-    super();
+    public get meshType(): GeometryType { return this._meshType; }
+    public get materialType(): MaterialType { return this._materialType; }
 
-    this._mesh = new THREE.Mesh(GeometryFactory.create(meshType), MaterialFactory.create(materialType));
-  }
+    constructor(meshType: GeometryType, materialType: MaterialType) {
+        super();
+
+        this._meshType = meshType;
+        this._materialType = materialType;
+
+        this._meshRendererComponentAdapter = new MeshRendererComponentAdapter(this);
+    }
 }

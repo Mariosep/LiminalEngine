@@ -6,7 +6,6 @@ export class SceneManager implements IEngineModule {
   private _currentScene: Scene | undefined;
 
   constructor() {
-    console.log("SceneManager constructor");
     this._scenes = new Map();
     this._currentScene = undefined;
   }

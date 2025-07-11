@@ -12,7 +12,7 @@ export class TimeManager implements IEngineModule {
     public static get time(): number { return TimeManager._time; }
 
     constructor() {
-        console.log("TimeManager constructor");
+        
     }
 
     public init() {
