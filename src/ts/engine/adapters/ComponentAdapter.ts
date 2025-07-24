@@ -1,8 +1,18 @@
-import { Component } from "../../Component";
-import { Entity } from "../../Entity";
+import { Component } from "../core/ecs/Component";
+import { Entity } from "../core/ecs/Entity";
+import { EntityAdapter } from "../core/ecs/EntityAdapter";
+import * as THREE from "three";
 
 export abstract class ComponentAdapter {
     private _component: Component;
+
+    public get entityAdapter(): EntityAdapter | undefined {
+        return this._component.entity?.adapter;
+    }
+
+    public get threeEntity(): THREE.Object3D | undefined {
+        return this.entityAdapter?.threeEntity;
+    }
 
     constructor(component: Component) {
         this._component = component;

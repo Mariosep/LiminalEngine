@@ -1,4 +1,4 @@
-import { Entity } from "../ecs/Entity";
+import { Entity } from "./ecs/Entity";
 
 export interface ISceneEventListener {
   onEntityAdded(entity: Entity): void;
@@ -13,14 +13,20 @@ export class EventMediator {
   private _sceneListeners: Map<string, ISceneEventListener[]> = new Map();
   private _entityListeners: Map<string, IEntityEventListener[]> = new Map();
 
-  public subscribeToSceneEvents(sceneId: string, listener: ISceneEventListener): void {
+  public subscribeToSceneEvents(
+    sceneId: string,
+    listener: ISceneEventListener
+  ): void {
     if (!this._sceneListeners.has(sceneId)) {
       this._sceneListeners.set(sceneId, []);
     }
     this._sceneListeners.get(sceneId)!.push(listener);
   }
 
-  public unsubscribeFromSceneEvents(sceneId: string, listener: ISceneEventListener): void {
+  public unsubscribeFromSceneEvents(
+    sceneId: string,
+    listener: ISceneEventListener
+  ): void {
     const listeners = this._sceneListeners.get(sceneId);
     if (listeners) {
       const index = listeners.indexOf(listener);
@@ -30,14 +36,20 @@ export class EventMediator {
     }
   }
 
-  public subscribeToEntityEvents(entity: Entity, listener: IEntityEventListener): void {
+  public subscribeToEntityEvents(
+    entity: Entity,
+    listener: IEntityEventListener
+  ): void {
     if (!this._entityListeners.has(entity.id)) {
       this._entityListeners.set(entity.id, []);
     }
     this._entityListeners.get(entity.id)!.push(listener);
   }
 
-  public unsubscribeFromEntityEvents(entity: Entity, listener: IEntityEventListener): void {
+  public unsubscribeFromEntityEvents(
+    entity: Entity,
+    listener: IEntityEventListener
+  ): void {
     const listeners = this._entityListeners.get(entity.id);
     if (listeners) {
       const index = listeners.indexOf(listener);

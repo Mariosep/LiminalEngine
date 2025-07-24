@@ -1,4 +1,4 @@
-import { IEngineModule } from "../core/IEngineModule";
+import { IEngineModule } from "../IEngineModule";
 import { Scene } from "./Scene";
 
 export class SceneManager implements IEngineModule {
@@ -10,9 +10,7 @@ export class SceneManager implements IEngineModule {
     this._currentScene = undefined;
   }
 
-  public init(): void {
-    
-  }
+  public init(): void {}
 
   public update(): void {
     if (this._currentScene) {
